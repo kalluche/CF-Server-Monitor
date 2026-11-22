@@ -440,8 +440,8 @@ export function useServerCardData(props) {
     for (const def of THREE_NET_DEFS) {
       (isDisabledByLatestLoss(def.key) ? disabled : enabled).push(def)
     }
-    // 启用的节点优先且保持原顺序；不足 3 个时用禁用节点按原顺序补位
-    return [...enabled, ...disabled].slice(0, 3).map(buildThreeNetRow)
+    // 启用的节点优先且保持原顺序；不足 8 个时用禁用节点按原顺序补位（卡片展示全部 8 个节点）
+    return [...enabled, ...disabled].slice(0, 8).map(buildThreeNetRow)
   })
 
   const hasThreeNetDetails = computed(() => threeNetDetails.value.length > 0)
