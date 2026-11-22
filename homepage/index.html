@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kalluche 总面板</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--border:#2b3444;--text:#e6edf3;--muted:#8b98a9;--green:#3fb950;--yellow:#d29922;--red:#f85149;--accent:#58a6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;display:flex;min-height:100vh;font-size:14px}
+aside{width:230px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:18px 0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo{padding:0 18px 14px;border-bottom:1px solid var(--border);margin-bottom:10px}
+.logo b{font-size:17px}.logo span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+nav .l1{padding:9px 18px 4px;color:var(--muted);font-size:12px;letter-spacing:1px}
+nav a{display:block;padding:7px 18px 7px 26px;color:var(--text);text-decoration:none;cursor:pointer;border-left:3px solid transparent}
+nav a.l3{padding-left:42px;color:var(--muted);font-size:13px}
+nav a:hover{background:var(--panel2)}
+nav a.on{background:var(--panel2);border-left-color:var(--accent);color:#fff}
+main{flex:1;padding:24px 28px;max-width:1080px}
+h1{font-size:20px;margin-bottom:4px}
+.sub{color:var(--muted);margin-bottom:18px;font-size:13px}
+.page{display:none}.page.on{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card h3{font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0}
+.dot.y{background:var(--yellow)}
+.mrow{display:flex;justify-content:space-between;color:var(--muted);padding:3px 0;font-size:13px}
+.mrow b{color:var(--text);font-weight:500}
+.bar{height:6px;background:#0d1117;border-radius:3px;margin:2px 0 8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.bar i.warn{background:var(--yellow)}.bar i.bad{background:var(--red)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-size:13px}
+th{color:var(--muted);font-weight:500;background:var(--panel2)}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:1px 8px;border-radius:9px;font-size:12px;background:#12351c;color:var(--green)}
+.tag.y{background:#3a2f10;color:var(--yellow)}
+.tag.g{background:var(--panel2);color:var(--muted)}
+.links a{display:block;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);text-decoration:none}
+.links a:hover{border-color:var(--accent)}
+.links a span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.note{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:8px;padding:12px 16px;color:var(--muted);margin-bottom:14px;line-height:1.7}
+.sec{margin:22px 0 10px;font-size:15px}
+@media(max-width:760px){aside{width:64px}aside .logo b,aside .logo span,nav .l1,nav a span{display:none}nav a{padding-left:18px}main{padding:16px}}
+</style>
+</head>
+<body>
+<aside>
+  <div class="logo"><b>kalluche.xyz</b><span>总面板 · 数据快照 2026-11-22 17:48 CST</span></div>
+  <nav id="nav">
+    <a data-p="home" class="on"><span>总览</span></a>
+    <div class="l1">运维监控</div>
+    <a data-p="servers"><span>服务器</span></a>
+    <a data-p="n-tokyo" class="l3"><span>Oracle-Tokyo-E2</span></a>
+    <a data-p="n-mac" class="l3"><span>Mac-mini-M4</span></a>
+    <a data-p="n-sydney" class="l3"><span>AWS-Sydney-EC2</span></a>
+    <a data-p="alerts"><span>告警与看门狗</span></a>
+    <a data-p="tasks"><span>自动化任务</span></a>
+    <div class="l1">交易系统</div>
+    <a data-p="datalayer"><span>数据层</span></a>
+    <a data-p="lines"><span>内容线 A / B / C</span></a>
+    <a data-p="sentinel"><span>持仓哨兵</span></a>
+    <div class="l1">资源与账号</div>
+    <a data-p="cloud"><span>云资源</span></a>
+    <a data-p="freeres"><span>免费资源收集册</span></a>
+    <a data-p="imaging"><span>出图体系</span></a>
+    <div class="l1">其他</div>
+    <a data-p="links"><span>入口与文档</span></a>
+    <a data-p="todos"><span>待办与日程</span></a>
+  </nav>
+</aside>
+<main>
+  <!-- 总览 -->
+  <section class="page on" id="p-home">
+    <h1>总览</h1><div class="sub">五台机器全在线 · 快照时间 2026-11-22 17:48 CST</div>
+    <div class="grid">
+      <div class="card"><h3><i class="dot"></i>Oracle-Tokyo-E2</h3><div class="mrow"><span>CPU</span><b>25.6%</b></div><div class="bar"><i style="width:26%"></i></div><div class="mrow"><span>内存</span><b>40%</b></div><div class="bar"><i style="width:40%"></i></div><div class="mrow"><span>磁盘</span><b>19%</b></div><div class="bar"><i style="width:19%"></i></div><div class="mrow"><span>本月出站</span><b>13.6 GB / 10 TB</b></div></div>
+      <div class="card"><h3><i class="dot"></i>Mac-mini-M4</h3><div class="mrow"><span>CPU</span><b>34.0%</b></div><div class="bar"><i style="width:34%"></i></div><div class="mrow"><span>内存</span><b>83%</b></div><div class="bar"><i class="warn" style="width:83%"></i></div><div class="mrow"><span>磁盘</span><b>94%</b></div><div class="bar"><i class="bad" style="width:94%"></i></div><div class="mrow"><span>备注</span><b>磁盘由机主本地自理</b></div></div>
+      <div class="card"><h3><i class="dot"></i>BT-Coin-Business</h3><div class="mrow"><span>性质</span><b>东京业务层虚拟节点</b></div><div class="mrow"><span>Binance 现货</span><b>374 ms</b></div><div class="mrow"><span>Binance 合约</span><b>381 ms</b></div><div class="mrow"><span>Binance 行情流</span><b>4 ms</b></div><div class="mrow"><span>看门狗</span><b>每 3 分钟全检 · 最近全健康</b></div></div>
+      <div class="card"><h3><i class="dot"></i>AWS-Sydney-EC2</h3><div class="mrow"><span>CPU</span><b>1.7%</b></div><div class="bar"><i style="width:2%"></i></div><div class="mrow"><span>内存</span><b>39%</b></div><div class="bar"><i style="width:39%"></i></div><div class="mrow"><span>磁盘</span><b>9%</b></div><div class="bar"><i style="width:9%"></i></div><div class="mrow"><span>用途</span><b>深度采集机</b></div></div>
+      <div class="card"><h3><i class="dot"></i>Sydney-Collector-Business</h3><div class="mrow"><span>性质</span><b>悉尼深采业务层虚拟节点</b></div><div class="mrow"><span>深采器 / 持仓哨兵 / ntfy 看门狗</span><b>三服务常驻</b></div><div class="mrow"><span>磁盘熔断线</span><b>数据 &gt;22 GB 停采 · &lt;20 GB 恢复</b></div></div>
+      <div class="card"><h3>临近待办</h3><div class="mrow"><span>2026-11-22 晚</span><b>Altare 注册重试</b></div><div class="mrow"><span>2026-11-25 上午</span><b>Oracle PAYG 升级重试</b></div><div class="mrow"><span>待定</span><b>Oracle 第二台 E2 领取</b></div></div>
+    </div>
+  </section>
+  <!-- 服务器 -->
+  <section class="page" id="p-servers">
+    <h1>服务器</h1><div class="sub">实时明细在监控面板里，这里是总览与入口</div>
+    <div class="note">完整曲线、8 行测速与告警规则在 <a href="https://status.kalluche.xyz" style="color:var(--accent)">status.kalluche.xyz</a>（私有站点，需 App 口令）。下方三个三级页是各台的档案要点。</div>
+    <table><tr><th>节点</th><th>系统</th><th>角色</th><th>状态</th></tr>
+    <tr><td>Oracle-Tokyo-E2</td><td>Ubuntu 24.04</td><td>BT Coin 数据面 + 云端流水线</td><td><span class="tag">在线</span></td></tr>
+    <tr><td>Mac-mini-M4</td><td>macOS 15.3.2</td><td>本机 OpenClaw + Muse 主机</td><td><span class="tag">在线</span></td></tr>
+    <tr><td>BT-Coin-Business</td><td>虚拟节点</td><td>东京 13 个服务业务层健康</td><td><span class="tag">在线</span></td></tr>
+    <tr><td>AWS-Sydney-EC2</td><td>Ubuntu 26.04</td><td>深度采集机（t3.micro）</td><td><span class="tag">在线</span></td></tr>
+    <tr><td>Sydney-Collector-Business</td><td>虚拟节点</td><td>悉尼三服务业务层健康</td><td><span class="tag">在线</span></td></tr></table>
+  </section>
+  <section class="page" id="p-n-tokyo"><h1>Oracle-Tokyo-E2</h1><div class="sub">东京 · E2.1.Micro · 155.248.188.23</div>
+    <div class="card"><div class="mrow"><span>快照 CPU / 内存 / 磁盘</span><b>25.6% / 40% / 19%</b></div><div class="mrow"><span>本月出站</span><b>13.6 GB（上限 10 TB，只计出站）</b></div><div class="mrow"><span>币安延迟 现货/合约/行情流/MUSE</span><b>2 / 2 / 2 / 1 ms</b></div><div class="mrow"><span>在跑</span><b>BT Coin 7+ 服务、Caddy、Xray、tinyproxy、云端 square-pipeline</b></div><div class="mrow"><span>红线</span><b>见服务器 /home/ubuntu/MUSE-CONTEXT.md（7 条）</b></div><div class="mrow"><span>待决</span><b>PAYG 升级 11-25 重试；8080 临时服务与 8765 绑定问题记录在案未处理</b></div></div></section>
+  <section class="page" id="p-n-mac"><h1>Mac-mini-M4</h1><div class="sub">本机 · macOS 15.3.2</div>
+    <div class="card"><div class="mrow"><span>快照 CPU / 内存 / 磁盘</span><b>34.0% / 83% / 94%</b></div><div class="mrow"><span>在跑</span><b>OpenClaw（square 智能体）、Muse、台账数据库</b></div><div class="mrow"><span>磁盘</span><b>94% — 机主本地自理，系统自会提示</b></div></div></section>
+  <section class="page" id="p-n-sydney"><h1>AWS-Sydney-EC2</h1><div class="sub">悉尼 ap-southeast-2 · t3.micro · 54.253.144.23</div>
+    <div class="card"><div class="mrow"><span>快照 CPU / 内存 / 磁盘</span><b>1.7% / 39% / 9%（根盘 30 GB）</b></div><div class="mrow"><span>在跑</span><b>持仓哨兵（每分钟）、深采器、ntfy 看门狗（每 5 分钟）</b></div><div class="mrow"><span>币安连通</span><b>悉尼直连全通，无地域封锁</b></div><div class="mrow"><span>免费期</span><b>至 2027-05-22 · $100 抵扣金 · 出站免费 100 GB/月</b></div></div></section>
+  <!-- 告警 -->
+  <section class="page" id="p-alerts"><h1>告警与看门狗</h1><div class="sub">三层冗余，单点坏掉不失联</div>
+    <table><tr><th>层</th><th>机制</th><th>通道</th></tr>
+    <tr><td>云端面板</td><td>探针断报由 Cloudflare 侧独立判离线并告警</td><td>ntfy（安卓专机）</td></tr>
+    <tr><td>本地看门狗</td><td>东京每 3 分钟 / 悉尼每 5 分钟全检，状态变化才推</td><td>ntfy + Server酱微信双推</td></tr>
+    <tr><td>GitHub 巡检</td><td>muse-ops 每 30 分钟巡检</td><td>ntfy + Server酱微信双推</td></tr></table>
+    <div class="note" style="margin-top:14px">已验证：断心跳演练（2026-11-22）中云端独立判离线成功；Server酱为老免费档、每日条数有限，只作备份通道。</div></section>
+  <!-- 任务 -->
+  <section class="page" id="p-tasks"><h1>自动化任务</h1><div class="sub">GitHub 侧三个 + 本地看门狗与哨兵班次</div>
+    <table><tr><th>任务</th><th>频率</th><th>最近状态</th></tr>
+    <tr><td>external-patrol（巡检）</td><td>每 30 分钟</td><td><span class="tag">正常</span></td></tr>
+    <tr><td>news-collect（新闻采集）</td><td>每天 08:00</td><td><span class="tag">11-22 17:18 手动首跑成功，已验收</span></td></tr>
+    <tr><td>backup-verify（备份校验）</td><td>每天一次</td><td><span class="tag y">待命（等台账异地备份接入）</span></td></tr>
+    <tr><td>业务看门狗 ×2</td><td>东京 3 分钟 / 悉尼 5 分钟</td><td><span class="tag">运行中</span></td></tr>
+    <tr><td>哨兵评估班次（B 线）</td><td>每天约 9:30 / 14:30 / 21:30</td><td><span class="tag">运行中</span></td></tr>
+    <tr><td>算盘结账</td><td>每天 10:30</td><td><span class="tag">已上岗，首班 11-23</span></td></tr></table></section>
+  <!-- 交易系统 -->
+  <section class="page" id="p-datalayer"><h1>数据层</h1><div class="sub">双层系统第一层：采集与计算</div>
+    <div class="grid">
+      <div class="card"><h3>东京普通采集</h3><div class="mrow"><span>内容</span><b>面板 + analyze + B 线扫描器（5 分钟）</b></div><div class="mrow"><span>状态</span><b>运行中</b></div></div>
+      <div class="card"><h3>悉尼深度采集</h3><div class="mrow"><span>内容</span><b>depth20@100ms + trade + forceOrder，按持仓清单采</b></div><div class="mrow"><span>状态</span><b>运行中 · 离场自动出摘要删原始</b></div></div>
+      <div class="card"><h3>持仓衍生品采集</h3><div class="mrow"><span>内容</span><b>OI / 多空比 / 主动买卖比向前自采</b></div><div class="mrow"><span>状态</span><b><span class="tag y">建设中（P0 已定，待开工）</span></b></div></div>
+    </div></section>
+  <section class="page" id="p-lines"><h1>内容线 A / B / C</h1><div class="sub">币安广场三线，严格分开以便对比</div>
+    <table><tr><th>线</th><th>定义</th><th>状态</th></tr>
+    <tr><td>A · 代写（流水线）</td><td>替 OpenClaw 写，程序触发，人设「盘面手记」</td><td>流水线在云端，写稿环节待通</td></tr>
+    <tr><td>B · 同源自主（程序数据）</td><td>同源数据，选题时机自主，先草稿不发布</td><td>运行中（哨兵三班）</td></tr>
+    <tr><td>C · 自寻线索（公开数据）</td><td>完全自主，人设「数据哨兵」</td><td>筹备</td></tr></table>
+    <div class="note" style="margin-top:14px">台账成绩：数据库已建（只追加 + 校验链），算盘每天 10:30 结账；成绩单 <span class="tag y">建设中</span>，攒够周期后在此展示。</div></section>
+  <section class="page" id="p-sentinel"><h1>持仓哨兵</h1><div class="sub">悉尼机 · position-sentinel</div>
+    <div class="card"><div class="mrow"><span>机制</span><b>每分钟签名查三账号持仓 + 挂单，维护深采清单</b></div><div class="mrow"><span>离场规则</span><b>全归零宽限 30 分钟后触发深采收尾</b></div><div class="mrow"><span>状态</span><b>常驻运行</b></div></div></section>
+  <!-- 资源 -->
+  <section class="page" id="p-cloud"><h1>云资源</h1><div class="sub">先争取到手，再谈用好</div>
+    <table><tr><th>资源</th><th>要点</th><th>关键日期</th></tr>
+    <tr><td>Oracle Cloud</td><td>东京 E2 在用；ARM 4C24G 抢机中；第二台 E2 名额待领</td><td>PAYG 重试 2026-11-25</td></tr>
+    <tr><td>AWS</td><td>Free plan · 悉尼深采机 · $100 抵扣金</td><td>免费期至 2027-05-22</td></tr>
+    <tr><td>Kaggle</td><td>免费 GPU 2×T4 · 每周约 30 小时</td><td>—</td></tr>
+    <tr><td>Cloudflare</td><td>域名、面板、监控 Worker</td><td>—</td></tr>
+    <tr><td>Gemini</td><td>免费 Key · 2.5-flash 可用（Pro 档免费额度为 0）</td><td>—</td></tr></table></section>
+  <section class="page" id="p-freeres"><h1>免费资源收集册</h1><div class="sub">每 3 天收集一轮，在收集册里标「要 / 跳过 / 已领」</div>
+    <div class="card"><div class="mrow"><span>正本</span><b>Muse 资料库 FREE-RESOURCES.md</b></div><div class="mrow"><span>首轮</span><b>28 条候选（2026-11-22）</b></div><div class="mrow"><span>进行中</span><b>NVIDIA 强模型通道评估中；Groq / OpenRouter 已暂缓</b></div></div></section>
+  <section class="page" id="p-imaging"><h1>出图体系</h1><div class="sub">配图标准：币背景 × 当篇剧情双绑定，竖版优先</div>
+    <table><tr><th>通道</th><th>分工</th></tr>
+    <tr><td>Gemini</td><td>叙事型定制图（按剧情生成）</td></tr>
+    <tr><td>程序绘图</td><td>信息型图（真实 K 线 + 数据，模板横竖版都有）</td></tr>
+    <tr><td>Kaggle SDXL</td><td>批量实验（风格选型中，通用氛围图路线已否）</td></tr>
+    <tr><td>Canva</td><td>排版成图：PPT、海报</td></tr></table>
+    <div class="note" style="margin-top:14px">现行试行版规矩：双图制、竖版优先（信息图 4:5 / 叙事图 3:4）、一主两辅、$SYM 骨架统一 — 暂不定版，等真实发帖反馈。</div></section>
+  <!-- 入口 -->
+  <section class="page" id="p-links"><h1>入口与文档</h1><div class="sub">常用直达</div>
+    <div class="grid links">
+      <a href="https://status.kalluche.xyz">监控面板<span>status.kalluche.xyz</span></a>
+      <a href="https://btc.kalluche.xyz">BT Coin 面板<span>btc.kalluche.xyz</span></a>
+      <a href="https://github.com/kalluche/muse-ops">muse-ops 仓库<span>巡检 / 新闻 / 备份校验</span></a>
+      <a href="https://notebook.google.com/notebook/c4aaf8f5-3eeb-4a3d-be56-2c7e1cd0928e">NotebookLM · 交易员档案<span>33 源全量语料库</span></a>
+      <a href="https://www.kaggle.com">Kaggle<span>免费 GPU</span></a>
+      <a href="https://dash.cloudflare.com">Cloudflare 控制台<span>域名与 Worker</span></a>
+      <a href="https://cloud.oracle.com">Oracle 控制台<span>PAYG 与实例</span></a>
+      <a href="https://console.aws.amazon.com">AWS 控制台<span>悉尼 EC2</span></a>
+    </div></section>
+  <!-- 待办 -->
+  <section class="page" id="p-todos"><h1>待办与日程</h1><div class="sub">带日子的事</div>
+    <table><tr><th>日期</th><th>事项</th><th>说明</th></tr>
+    <tr><td>2026-11-22 晚</td><td>Altare 注册重试</td><td>总上限 24 次，约 19:40 试满</td></tr>
+    <tr><td>2026-11-25 上午</td><td>Oracle PAYG 升级重试</td><td>用户在场确认后提交；再拒则联系客服查原因</td></tr>
+    <tr><td>待定</td><td>Oracle 第二台 E2 领取</td><td>免费名额 2 台只领了 1 台；方针已定「领」，等排期</td></tr>
+    <tr><td>待定</td><td>台账异地备份复议</td><td>本地每日快照兜底中；台账满一个月或首份成绩单产出前再提</td></tr>
+    <tr><td>2027-05-22</td><td>AWS 免费期到期决策</td><td>悉尼深采机去留，提前决策</td></tr>
+    </table></section>
+</main>
+<script>
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{
+  document.querySelectorAll('#nav a').forEach(x=>x.classList.remove('on'));a.classList.add('on');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+a.dataset.p).classList.add('on');window.scrollTo(0,0);
+}));
+</script>
+</body>
+</html>
