@@ -15,7 +15,7 @@ const TABLE_DDL = `CREATE TABLE IF NOT EXISTS part_status (
 )`;
 
 const VALID_STATES = new Set(['ok', 'warn', 'fault']);
-const PART_RE = /^[A-Z][A-Z0-9-]{0,15}$/;
+const PART_RE = /^[A-Z][A-Za-z0-9-]{0,15}$/;
 
 // 与 middleware/auth.js 同款常量时间比较，避免逐位试探口令
 function constantTimeEquals(a, b) {
