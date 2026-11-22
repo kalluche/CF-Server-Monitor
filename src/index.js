@@ -6,6 +6,7 @@ import { serveFrontend } from './handlers/frontend.js';
 import { handleUpdate, handleWebSocketUpgrade, handleUpdateWebSocketUpgrade } from './handlers/update.js';
 import { handleServerAPI, handleServersAPI } from './handlers/dashboard.js';
 import { handleTheme } from './handlers/theme.js';
+import { handlePartStatusPost, handleSystemStatus } from './handlers/partStatus.js';
 import { isValidThemeOptions, loadSettings, loadSiteSettings, loadAppearanceOptions, normalizeFrontendWsTimeoutMinutes, normalizeLongHistoryPoints, saveThemeOptions, setDebug, debug } from './utils/settings.js';
 import { omitNullLossProbeFields } from './handlers/dashboard.js';
 import { checkAuth, hasAppPasswordAccess, simpleAuthResponse } from './middleware/auth.js';
@@ -282,6 +283,8 @@ export default {
 
     const routes = [
       { method: 'POST', path: '/update', handler: () => handleUpdate(request, env, ctx) },
+      { method: 'POST', path: '/part-status', handler: () => handlePartStatusPost(request, env) },
+      { method: 'GET', path: '/system-status', handler: () => handleSystemStatus(request, env) },
       { method: 'GET', path: '/update', handler: () => handleUpdateWebSocketUpgrade(request, env) },
       { method: 'GET', path: '/__do/health', handler: async () => {
         if (!env.METRICS_BROADCASTER) {
