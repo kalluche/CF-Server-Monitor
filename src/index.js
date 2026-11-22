@@ -7,6 +7,7 @@ import { handleUpdate, handleWebSocketUpgrade, handleUpdateWebSocketUpgrade } fr
 import { handleServerAPI, handleServersAPI } from './handlers/dashboard.js';
 import { handleTheme } from './handlers/theme.js';
 import { handlePartStatusPost, handleSystemStatus } from './handlers/partStatus.js';
+import { handleSystemMap } from './handlers/systemMap.js';
 import { isValidThemeOptions, loadSettings, loadSiteSettings, loadAppearanceOptions, normalizeFrontendWsTimeoutMinutes, normalizeLongHistoryPoints, saveThemeOptions, setDebug, debug } from './utils/settings.js';
 import { omitNullLossProbeFields } from './handlers/dashboard.js';
 import { checkAuth, hasAppPasswordAccess, simpleAuthResponse } from './middleware/auth.js';
@@ -285,6 +286,7 @@ export default {
       { method: 'POST', path: '/update', handler: () => handleUpdate(request, env, ctx) },
       { method: 'POST', path: '/part-status', handler: () => handlePartStatusPost(request, env) },
       { method: 'GET', path: '/system-status', handler: () => handleSystemStatus(request, env) },
+      { method: 'GET', path: '/map', handler: async () => { await ensureSiteSettings(); return handleSystemMap(request, env, sys); } },
       { method: 'GET', path: '/update', handler: () => handleUpdateWebSocketUpgrade(request, env) },
       { method: 'GET', path: '/__do/health', handler: async () => {
         if (!env.METRICS_BROADCASTER) {
